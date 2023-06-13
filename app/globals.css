@@ -4,19 +4,19 @@
 
 * {
   margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   -moz-osx-font-smoothing: grayscale; /* font를 좀 더 부드럽게 */
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 h1 {
@@ -59,6 +59,12 @@ ol {
 address {
   font-style: normal;
 }
+
+/* @layer components {
+  .visually-hidden {
+    @apply absolute w-px h-px p-0 m-[-1px] overflow-hidden whitespace-nowrap border-0;
+  }
+} */
 
 .visually-hidden {
   position: absolute !important;
