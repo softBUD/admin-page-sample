@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "./globals.css";
+import "@/app/globals.css";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <h1>Hello CSS reset TEST</h1>
       <input type="text" />
       <button>BUTTON</button>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <textarea name="" id="" cols={30} rows={10}></textarea>
       <select name="zzz" id="">
         <option value="">--Please choose an option--</option>
         <option value="dog">Dog</option>
