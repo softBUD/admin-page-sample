@@ -1,39 +1,70 @@
-export default function Navbar() {
-  return (
-    <nav className="absolute top-0 left-0 bg-indigo-200">
-      <h2 className="visually-hidden">사이드메뉴</h2>
-      <div>
-        <button type="button">Dashborad</button>
+import { IconType } from "react-icons/lib";
+import { FaHome } from "react-icons/fa";
+import { FaTools } from "react-icons/fa";
+import { FaBarcode } from "react-icons/fa";
+import Link from "next/link";
+import BarChartCard from "./Cards/bar-chart-card";
 
+export default function Navbar() {
+  // type: 선언적 확장 불가능, nav에 입력된 메뉴의 데이터는 정적 타입으로만 사용한다.
+  // interface : 선언적 확장 가능, initialMenu는 하위메뉴 상위메뉴 모두 갖는 타입으로 사용하기위해 interface 사용
+
+  type MenuListType = {
+    id: number;
+    icon: IconType;
+    title: string;
+    childrenMenu?: InitialMenu[];
+  };
+
+  interface InitialMenu {
+    id: number;
+    icon?: IconType;
+    title: string;
+  }
+
+  const balancesChildren: InitialMenu[] = [
+    { id: 0, title: "Banks Accounts" },
+    { id: 1, title: "Credit Cards" },
+    { id: 2, title: "Loans" },
+  ];
+
+  const menuList: MenuListType[] = [
+    { id: 0, icon: FaHome, title: "Dashboard" },
+    { id: 1, icon: FaTools, title: "Settings" },
+    {
+      id: 2,
+      icon: FaBarcode,
+      title: "Balances",
+      childrenMenu: balancesChildren,
+    },
+  ];
+
+  return (
+    <>
+      <nav className="relative left-0 top-0 z-[1035] h-full w-60  bg-white border-r-2">
+        <h2
+          id="side-bar-title"
+          className="text-slate-500 ml-4 text-lg font-semibold mt-4 mb-1"
+        >
+          NEXT JS
+        </h2>
         <div>
-          <ul>
-            <li>
-              <a href="/">Accordian</a>
-            </li>
-            <li>
-              <a href="/">Cards</a>
-            </li>
-            <li>
-              <a href="/">Carousel</a>
-            </li>
-            <li>
-              <a href="/">alert</a>
-            </li>
-            <li>
-              <a href="/">button</a>
-            </li>
-            <li>
-              <a href="/">Nav</a>
-            </li>
-            <li>
-              <a href="/">질문과답변</a>
-            </li>
-            <li>
-              <a href="/">이벤트</a>
-            </li>
-          </ul>
+          {menuList.map((item) => (
+            <ul key={item.title} className="flex justify-left mt-8 ml-4">
+              <li className="relative top-1 mr-3 ">
+                <Link href="/">
+                  <item.icon className="text-slate-500" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-slate-500">
+                  {item.title}
+                </Link>
+              </li>
+            </ul>
+          ))}
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
