@@ -4,6 +4,7 @@ import { FaMailBulk } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import Image from "next/image";
 import Profile from "@/public/profile.jpg";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -12,19 +13,14 @@ export default function Header() {
         <h2 className="visually-hidden">header menu</h2>
         <ul className="flex font-semibold">
           <li className="p-4">
-            <a href="/" className="text-slate-500">
+            <Link href="/admin" className="text-slate-500">
+              Admin
+            </Link>
+          </li>
+          <li className="p-4">
+            <Link href="/dashboard" className="text-slate-500">
               Dashboard
-            </a>
-          </li>
-          <li className="p-4">
-            <a href="/" className="text-slate-500">
-              Users
-            </a>
-          </li>
-          <li className="p-4">
-            <a href="/" className="text-slate-500">
-              Settings
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

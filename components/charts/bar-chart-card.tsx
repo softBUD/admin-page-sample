@@ -3,7 +3,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
-import Card from "./card";
+import Card from "../cards/card";
 Chart.register(...registerables);
 
 export default function BarChartCard() {
@@ -71,9 +71,5 @@ export default function BarChartCard() {
     },
   };
 
-  return (
-    <Card title="Title Preview">
-      <Bar data={data} options={options} />
-    </Card>
-  );
+  return <Bar data={data} options={options} />;
 }

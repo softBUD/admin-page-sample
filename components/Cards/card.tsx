@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CardProps {
-  title: string;
+  title?: string;
   content?: string;
   children?: React.ReactNode;
 }
@@ -9,7 +9,7 @@ interface CardProps {
 export default function Card({ title, content, children }: CardProps) {
   return (
     <>
-      <div className=" flex-col break-words w-full mb-6 shadow-lg rounded bg-white">
+      <div className="flex-col break-words w-full shadow-lg rounded bg-white">
         <div className="rounded-t mb-0 px-4 py-3">
           <div className="flex flex-wrap items-center">
             <div className="">
