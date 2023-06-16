@@ -3,7 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
 import { FaBarcode } from "react-icons/fa";
 import Link from "next/link";
-import BarChartCard from "./charts/bar-chart-card";
+import BarChartCard from "../charts/bar-chart-card";
 
 export default function Navbar() {
   // type: 선언적 확장 불가능, nav에 입력된 메뉴의 데이터는 정적 타입으로만 사용한다.
@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative left-0 top-0 z-[1035] h-full w-60 min-w-[200px]  bg-white border-r-2">
+      <nav className="relative left-0 top-0 z-[1035] w-60 min-w-[200px]  bg-white border-r-2">
         <h1
           id="side-bar-title"
           className="text-violet-500 ml-4 text-xl font-semibold mt-4 mb-1"
