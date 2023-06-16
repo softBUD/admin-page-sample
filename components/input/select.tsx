@@ -1,4 +1,5 @@
 "use client";
+import { FaChevronDown } from "react-icons/fa";
 import React, {
   MouseEventHandler,
   forwardRef,
@@ -31,9 +32,14 @@ const OptionsHeader = ({ onClick, value }: OptionBoxProps) => {
   return (
     <li
       onClick={onClick}
-      className="border-solid border border-slate-200 rounded"
+      className="border-solid border border-slate-200 rounded p-1"
     >
-      {value}
+      <div className="flex justify-between">
+        {value}
+        <span className="relative top-1">
+          <FaChevronDown />
+        </span>
+      </div>
     </li>
   );
 };
@@ -42,7 +48,7 @@ const OptionsDropDown = ({ onClick, value }: OptionBoxProps) => {
   return (
     <li
       onClick={onClick}
-      className="border-solid border border-slate-200 rounded"
+      className="border-solid border border-slate-200 rounded visually-hidden"
     >
       {value}
     </li>
