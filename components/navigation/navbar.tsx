@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative left-0 top-0 z-[1035] w-60 min-w-[200px]  bg-white border-r-2">
+      <nav className="relative overflow-y-auto left-0 top-0 z-[1035] w-60 min-w-[200px]  bg-white border-r-2">
         <h1
           id="side-bar-title"
           className="text-violet-500 ml-4 text-xl font-semibold mt-4 mb-1"

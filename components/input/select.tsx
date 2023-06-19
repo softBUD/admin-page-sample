@@ -25,14 +25,19 @@ type SelectOptions = {
 
 interface OptionBoxProps {
   onClick: MouseEventHandler;
+  openSelect?: boolean;
   value: string;
 }
 
+const selectInputLabel = (label: string | undefined) => {
+  return label ? <div className="min-w-fit mr-4">{label}</div> : null;
+};
+
 const OptionsHeader = ({ onClick, value }: OptionBoxProps) => {
   return (
-    <li
+    <div
       onClick={onClick}
-      className="border-solid border border-slate-200 rounded p-1"
+      className="border-solid border-2 border-slate-200 rounded pl-2 pr-2 pt-1 pb-1 select-none"
     >
       <div className="flex justify-between">
         {value}
@@ -40,16 +45,13 @@ const OptionsHeader = ({ onClick, value }: OptionBoxProps) => {
           <FaChevronDown />
         </span>
       </div>
-    </li>
+    </div>
   );
 };
 
 const OptionsDropDown = ({ onClick, value }: OptionBoxProps) => {
   return (
-    <li
-      onClick={onClick}
-      className="border-solid border border-slate-200 rounded visually-hidden"
-    >
+    <li onClick={onClick} className="hover:bg-slate-100 p-2">
       {value}
     </li>
   );
@@ -60,31 +62,42 @@ export default function Select({
   selectLabel,
   defaultValue,
 }: SelectProps) {
+  const [openSelect, setOpenSelect] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<SelectOptions>({
     name: "select",
     value: "none-select",
   });
 
-  const selectClicked = (value: SelectOptions) => {
-    setSelectedValue(value);
+  const selectClicked = (option: SelectOptions) => {
+    setSelectedValue(option);
   };
 
   return (
     <div className="w-full flex">
-      {selectLabel && <div className="min-w-fit mr-4">{selectLabel}</div>}
-      <ul id="select-box" className="flex w-full flex-col">
+      <div id="select-box" className="flex w-full flex-col">
+        {/* selectInputLabel => 셀렉트 박스 옆에 표기할 라벨 유무에 따라 표시됨*/}
+        {selectInputLabel(selectLabel)}
+
         <OptionsHeader
-          onClick={() => console.log(selectedValue)}
+          onClick={() => setOpenSelect(!openSelect)}
+          openSelect={openSelect}
           value={selectedValue.name}
         />
-        {options.map((item) => (
-          <OptionsDropDown
-            key={item.value}
-            value={item.name}
-            onClick={() => selectClicked(item)}
-          />
-        ))}
-      </ul>
+        {openSelect && (
+          <ul className="border-solid border-2 border-slate-200 rounded select-none mt-1">
+            {options.map((item) => (
+              <OptionsDropDown
+                key={item.value}
+                value={item.name}
+                onClick={() => {
+                  selectClicked(item);
+                  setOpenSelect(false);
+                }}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
